@@ -32,13 +32,16 @@ The *Lotus* Base API is a RESTful service powered by [Slim](http://www.slimframe
 {
     "status": "HTTP_STATUS_CODE",
     "data": "DATA_OBJECT",
-    "message": "OPTIONAL_MESSAGE_FROM_API"
+    "message": "OPTIONAL_MESSAGE_FROM_API",
+    "more_info": "OPTIONAL_URL_FOR_FURTHER_INFO"
 }
 ```
 
 We use a universally interchangeable format known as [JavaScript Object Notation (JSON)](http://www.json.org) to transmit data from our API to your end-point. Even though the HTTP status code is included in the response header, we also include it as part of the JSON returned. Note that all the data request will be returned in the nested `data` object.
 
-Under most conditions, the `message` object will be empty unless an HTTP error code is provided. The message can be either utilized by developers to troubleshoot erroneous API calls, or used to inform your users about any issues occuring in the backend.
+Under most conditions, the `message` object will be empty unless an HTTP error code is provided. The message can be either utilized by developers to troubleshoot erroneous API calls, or used to inform your users about any issues occuring in the backend. Occasionally, a `more_info` key is provided, containing a documentation reference where you may glean further information on the reason of the error message you are receiving.
+
+If you encounter any issue with using our API, please do not hestitate to contact us through various channels: [open an issue](https://github.com/lotusbase/lotus.au.dk/issues) with our GitHub project, reach out to us via [@LotusBase](https://twitter.com/lotusbase), or [drop us an email](https://lotus.au.dk/meta/contact).
 
 # API key
 
@@ -100,9 +103,15 @@ $.ajax({
 
 Returns all distinct Danish *LORE1* mutant line IDs that can be ordered, and that we have seed stocks of&mdash;a ballpark figure of 100,000+ lines. This will generate a large JSON file, so you might want to stream the response instead.
 
+*LORE1* line IDs are identified internally using the following regex pattern: `^3\d{7}`. Therefore, IDs like **30000001** are accepted, but not **DK01-030000001**.
+
 <aside class="notice">Japanese <em>LORE1</em> lines cannot be ordered from us&mdash;please visit <a href="https://www.legumebase.brc.miyazaki-u.ac.jp/lore1BrowseAction.do">LegumeBase</a> for further information.</aside>
 
+For an overview of the current *LORE1* collection available, please refer to the [*LORE1* resource page](https://lotus.au.dk/lore1).
+
 ## Verify *LORE1* lines
+
+<span class="request__type get">Get</span> <code class="request__end-point">/lore1/{pids}/verify</code>
 
 > Response example for a valid lines `30000001`, `30000002`, and `30000003`:
 
@@ -150,8 +159,6 @@ Returns all distinct Danish *LORE1* mutant line IDs that can be ordered, and tha
   "more_info": "https://lotus.au.dk/docs/errors/partial-success"
 }
 ```
-
-<span class="request__type get">Get</span> <code class="request__end-point">/lore1/{pids}/verify</code>
 
 Performs validation of a list of *LORE1* mutant line IDs. A line is considered "valid" as long as it:
 
