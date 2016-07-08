@@ -66,7 +66,7 @@ html, body {
   left: 0;
   bottom: 0;
   width: $nav-width;
-  background-color: $nav-bg;
+  background-image: linear-gradient(15deg, rgba(158, 115, 50, 1), rgba(60, 123, 115, 1));
   font-size: 13px;
   font-weight: bold;
 
@@ -79,17 +79,26 @@ html, body {
     }
   }
 
-  // This is the logo at the top of the ToC
-  &>img {
-    display: block;
-    max-width: 100%;
+  // branding
+  &>.branding {
+    padding: 15px 15px 0;
+    &>img {
+      display: block;
+      max-width: 50%;
+      margin: 0 auto;
+    }
+    &>h1 {
+      color: $nav-text;
+      font-size: 1.25rem;
+      text-align: center;
+    }
   }
 
   &>.search {
     position: relative;
 
     input {
-      background: $nav-bg;
+      background: transparent;
       border-width: 0 0 1px 0;
       border-color: $search-box-border-color;
       padding: 6px 0 6px 20px;
@@ -115,6 +124,7 @@ html, body {
   }
 
   .search-results {
+    background-color: rgba(#000,.5);
     margin-top: 0;
     box-sizing: border-box;
     height: 0;
@@ -127,8 +137,6 @@ html, body {
       height: 30%;
       margin-bottom: 1em;
     }
-
-    @include embossed-bg;
 
     li {
       margin: 1em $nav-padding;
@@ -173,7 +181,7 @@ html, body {
 
   // This is the currently selected ToC entry
   .tocify-focus {
-    box-shadow: 0px 1px 0px $nav-active-shadow;
+    //box-shadow: 0px 1px 0px $nav-active-shadow;
     background-color: $nav-active-bg;
     color: $nav-active-text;
   }
@@ -188,9 +196,6 @@ html, body {
       padding-left: $nav-padding + $nav-indent;
       font-size: 12px;
     }
-
-    // for embossed look:
-    @include embossed-bg;
     &>li:last-child {
       box-shadow: none; // otherwise it'll overflow out of the subheader
     }
@@ -339,7 +344,7 @@ html, body {
     padding: 0 $main-padding;
     box-sizing: border-box;
     display: block;
-    text-shadow: $main-embossed-text-shadow;
+    //text-shadow: $main-embossed-text-shadow;
 
     @extend %left-col;
   }
@@ -373,12 +378,12 @@ html, body {
   h2 {
     @extend %header-font;
     font-size: 20px;
-    margin-top: 4em;
+    margin-top: 3rem;
     margin-bottom: 0;
-    border-top: 1px solid #ccc;
+    //border-top: 1px solid #ccc;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
-    background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
+    //background-image: linear-gradient(to bottom, rgba(#fff, 0.4), rgba(#fff, 0));
   }
 
   // h2s right after h1s should bump right up
@@ -399,6 +404,10 @@ html, body {
     font-size: 10px;
   }
 
+  a {
+    color: #5ca4a9;
+  }
+
   hr {
     margin: 2em 0;
     border-top: 2px solid $examples-bg;
@@ -408,6 +417,11 @@ html, body {
   table {
     margin-bottom: 1em;
     overflow: auto;
+    thead {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
     th,td {
       text-align: left;
       vertical-align: top;
@@ -470,20 +484,23 @@ html, body {
   aside {
     padding-top: 1em;
     padding-bottom: 1em;
-    text-shadow: 0 1px 0 lighten($aside-notice-bg, 15%);
+    //text-shadow: 0 1px 0 lighten($aside-notice-bg, 15%);
     margin-top: 1.5em;
     margin-bottom: 1.5em;
     background: $aside-notice-bg;
+    color: #eee;
     line-height: 1.6;
 
     &.warning {
       background-color: $aside-warning-bg;
-      text-shadow: 0 1px 0 lighten($aside-warning-bg, 15%);
     }
 
     &.success {
       background-color: $aside-success-bg;
-      text-shadow: 0 1px 0 lighten($aside-success-bg, 15%);
+    }
+
+    a {
+      color: #fff;
     }
   }
 
@@ -510,8 +527,26 @@ html, body {
     margin: -2px;
     border-radius: 4px;
     border: 1px solid #F7E633;
-    text-shadow: 1px 1px 0 #666;
+    //text-shadow: 1px 1px 0 #666;
     background: linear-gradient(to top left, #F7E633 0%, #F1D32F 100%);
+  }
+
+  // Specific styles
+  span.request__type {
+    border-radius: 16px;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 1rem;
+    padding: 0 12px;
+    text-transform: uppercase;
+    &.get    { background-color: #7D9DC9; }
+    &.post   { background-color: #8CBEB2; }
+    &.delete { background-color: #F3B562; }
+  }
+  code.request__end-point {
+    font-size: 16px;
   }
 }
 
@@ -533,7 +568,7 @@ html, body {
     clear:right;
 
     box-sizing: border-box;
-    text-shadow: 0px 1px 2px rgba(0,0,0,0.4);
+    //text-shadow: 0px 1px 2px rgba(0,0,0,0.4);
 
     @extend %right-col;
 
@@ -556,8 +591,6 @@ html, body {
       border-radius: 5px;
       padding: $code-annotation-padding;
       color: #ccc;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #404040;
     }
   }
 }

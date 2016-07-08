@@ -42,7 +42,10 @@ under the License.
       </span>
     </a>
     <div class="tocify-wrapper">
-      <%= image_tag "logo.png" %>
+      <div class="branding">
+        <%= image_tag "logo.png" %>
+        <h1><%= current_page.data.header || "API" %> <%= current_page.data.api_version %></h1>
+      </div>
       <% if language_tabs %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
