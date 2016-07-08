@@ -22,9 +22,9 @@ api_version: v1
 
 # Introduction
 
-> The API endpoint is available at `https://lotus.au.dk/api/v{{version}}`. The most current API endpoint is at `https://lotus.au.dk/api/v1`
-
 The *Lotus* Base API is a RESTful service powered by [Slim](http://www.slimframework.com). Our API offers predictable, resource-oriented URLs that return appropriate HTTP status codes to indicate the outcome of an API call. The latest version of our API is **v1**.
+
+The API endpoint is available at `https://lotus.au.dk/api/v{{version}}`. The most current API endpoint is at `https://lotus.au.dk/api/v1`.
 
 > The format returned is [JSON](http://www.json.org), in the following format:
 
