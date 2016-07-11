@@ -472,7 +472,7 @@ html, body {
     background-color: rgba(0,0,0,0.05);
     padding: 3px;
     border-radius: 3px;
-    @extend %break-words;
+    //@extend %break-words;
     @extend %code-font;
   }
 
@@ -510,16 +510,28 @@ html, body {
     font-size: 14px;
   }
 
-  aside.notice:before {
+  aside.notice::before {
     @extend %icon-info-sign;
   }
 
-  aside.warning:before {
+  aside.warning::before {
     @extend %icon-exclamation-sign;
   }
 
-  aside.success:before {
+  aside.success::before {
     @extend %icon-ok-sign;
+  }
+
+  span {
+    &.icon-notice::before {
+      @extend %icon-info-sign;
+    }
+    &.icon-ok::before {
+      @extend %icon-ok-sign;
+    }
+    &.icon-warning::before {
+      @extend %icon-exclamation-sign;
+    }
   }
 
   .search-highlight {
@@ -533,20 +545,30 @@ html, body {
 
   // Specific styles
   span.request__type {
-    border-radius: 16px;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
     color: #fff;
     display: inline-block;
+    line-height: 2em;
     font-size: 14px;
     font-weight: bold;
-    margin-right: 1rem;
     padding: 0 12px;
     text-transform: uppercase;
     &.get    { background-color: #7D9DC9; }
     &.post   { background-color: #8CBEB2; }
     &.delete { background-color: #F3B562; }
   }
-  code.request__end-point {
-    font-size: 16px;
+  span.request__end-point {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-left: none;
+    display: inline-block;
+    line-height: calc(2em - 2px);
+    padding: 0 12px;
+    font-size: 14px;
+    @extend %code-font;
   }
 }
 
